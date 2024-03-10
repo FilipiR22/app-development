@@ -1,25 +1,22 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request, jsonify
 
-app= Flask(__name__)
+app = Flask(__name__)
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
+@app.route('/processar-requisicao', methods=['POST'])
+def processar_requisicao():
+    data = request.get_json()
+    print(data)
 
-@app.route('/inserir-livro.html')
-def inserir():
-    return render_template('inserir-livro.html')
+    # Realize o processamento necessário com os dados recebidos
+    key_from_client = data.get('key', '')
+    resposta_do_servidor = f"Você enviou: {key_from_client}"
+    print(key_from_client)
 
-@app.route('/cadastro', methods=['POST'])
-def olá():
-    name = request.form['name']
-    genero = request.form['genero']
-    valor = request.form['valor']
-
-    return render_template('/feedback.html',nome=name,genero=genero,valor=valor)
-    
-
+    return jsonify(resposta_do_servidor)
 
 if __name__ == '__main__':
     app.run(debug=True)
