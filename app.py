@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
-from functions. import *
+from functions import *
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 @app.route('/executar-funcao', methods=['POST'])
 def executar_funcao():
@@ -22,5 +22,5 @@ def executar_funcao():
         return jsonify({'erro': 'Nome da função não especificado'}), 400
 
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(debug=True)
