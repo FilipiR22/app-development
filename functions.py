@@ -1,7 +1,7 @@
-def funcao1(**kwargs):
+def criarInstancia(**kwargs):
     # Implemente a lógica da função 1 aqui
-    return "Resultado da função 1"
+    return True
 
-def funcao2(**kwargs):
+def removerInstancia(**kwargs):
     # Implemente a lógica da função 2 aqui
-    return "Resultado da função 2"
+    return True

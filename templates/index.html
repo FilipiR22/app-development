@@ -1,18 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask AJAX Example</title>
 </head>
+
 <body>
-    <h1>Flask AJAX Example</h1>
-    
-    <button id="enviar-requisicao">Enviar Requisição AJAX</button>
+    <h1>Requisição via fetch</h1>
+    <h2>Criar Instância</h2>
+    <form id="form1">
+        <label for="nome-criar">Nome:</label>
+        <input type="text" id="nome-criar" name="nome">
+        <label for="email-criar">email:</label>
+        <input type="email" id="email-criar" name="email">
+        <button onclick="acionarFuncaoNoBackendCriar()">Enviar</button>
+    </form>
 
-    <div id="resultado"></div>
+    <h2>Remover Instância</h2>
+    <form id="form2">
+        <label for="nome-remover">Nome:</label>
+        <input type="text" id="nome-remover" name="nome">
+        <label for="email-remover">email:</label>
+        <input type="email" id="email-remover" name="email">
+        <button onclick="acionarFuncaoNoBackendRemover()">Remover</button>
+    </form>
 
-    <script src="../static/app.js"></script>
+    <br>
+    <hr> <br>
+
+    <div class="resultado" id="resultado">
+        Aqui sairá o resultado da requisição...
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script_criar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script_remover.js') }}"></script>
+    <script>
+        const form1 = document.querySelector('#form1')
+        const form2 = document.querySelector('#form2')
+        form1.addEventListener('submit', (event) => {
+            event.preventDefault()
+        })
+        form2.addEventListener('submit', (event) => {
+            event.preventDefault()
+        })
+    </script>
 </body>
+
 </html>

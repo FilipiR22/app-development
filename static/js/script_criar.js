@@ -1,11 +1,16 @@
-async function acionarFuncaoNoBackend(nomeFuncao, parametros) {
+const nome_criar = document.querySelector('#nome-criar');
+const email_criar = document.querySelector('#email-criar');
+let resultado_div_html = document.querySelector('.resultado');
+
+async function acionarFuncaoNoBackendCriar() {
     try {
+        //Criar
         const dados = {
-            funcao: nomeFuncao,
-            parametros: parametros
+            nome: nome_criar.value,
+            email: email_criar.value
         };
 
-        const response = await fetch('/executar-funcao', {
+        let response = await fetch('/criar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,7 +20,7 @@ async function acionarFuncaoNoBackend(nomeFuncao, parametros) {
 
         const data = await response.json();
         console.log('Resultado do servidor:', data.resultado);
-        return data.resultado;
+        resultado_div_html.textContent = data.resultado;
     } catch (error) {
         console.error('Erro:', error);
         throw error;
@@ -23,4 +28,4 @@ async function acionarFuncaoNoBackend(nomeFuncao, parametros) {
 }
 
 // Exemplo de uso
-acionarFuncaoNoBackend('funcao1', { parametro1: valor1, parametro2: valor2 });
+
